@@ -11,9 +11,15 @@ SEUTools-Alfred-Workflow
 
 `sbbsi` 查看SBBS站内信、回复、提醒
 
+![查看虎踞龙蟠SBBS的今日十大](https://raw.github.com/frederickjoe/my_images/master/screenshot2.png)
+
 `jwc` 查看教务处最新动态
 
+![查看虎踞龙蟠SBBS的今日十大](https://raw.github.com/frederickjoe/my_images/master/screenshot4.png)
+
 `seuset` 设置用户名、密码等
+
+![查看虎踞龙蟠SBBS的今日十大](https://raw.github.com/frederickjoe/my_images/master/screenshot3.png)
 
 2. 注意事项
 -------
