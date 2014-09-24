@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>36189400-5356-4F4D-83C1-9F457BE2CFB8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E213CBB7-7098-442F-9A03-E602156D0451</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>55B30402-6D57-483E-BAFC-BF2033806A92</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>95E241FD-2C9D-4664-8104-0832D793BFF8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>95E241FD-2C9D-4664-8104-0832D793BFF8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D4E43E3A-B67A-4C64-93BB-F52C9C90ED70</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>A4CD380E-2102-45B6-9E82-B4217392CCFD</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E213CBB7-7098-442F-9A03-E602156D0451</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>D809C20A-4141-4BD4-BBD7-8BD69BACCF1D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E213CBB7-7098-442F-9A03-E602156D0451</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>E213CBB7-7098-442F-9A03-E602156D0451</key>
+		<array/>
+	</dict>
+	<key>createdby</key>
+	<string>Everyone</string>
+	<key>description</key>
+	<string>东南大学小工具Workflow</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>东南大学小工具</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>126</integer>
+				<key>keyword</key>
+				<string>sbbs</string>
+				<key>runningsubtext</key>
+				<string>载入中，请稍等...</string>
+				<key>script</key>
+				<string>python sbbs.py</string>
+				<key>subtext</key>
+				<string>虎踞龙蟠 SBBS 十大热点</string>
+				<key>title</key>
+				<string>SBBS</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>36189400-5356-4F4D-83C1-9F457BE2CFB8</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>plusspaces</key>
+				<false/>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>E213CBB7-7098-442F-9A03-E602156D0451</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>sbbsi</string>
+				<key>runningsubtext</key>
+				<string>载入中，请稍等...</string>
+				<key>script</key>
+				<string>python sbbsi.py</string>
+				<key>subtext</key>
+				<string>查看虎踞龙蟠SBBS站内信、回复、@</string>
+				<key>title</key>
+				<string>SBBS提醒</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>D809C20A-4141-4BD4-BBD7-8BD69BACCF1D</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>import json,urllib, urllib2
+import sys
+from xml.sax.saxutils import escape
+reload(sys)
+sys.setdefaultencoding("utf-8")
+configFile = open('.config','r')
+configStr = configFile.read()
+config = json.loads(configStr)
+configFile.close()
+#print config
+arg = '{query}'
+if arg == '':
+    #do nothing
+    pass
+elif arg.startswith("bu:"):
+    username = arg[4:]
+    config['sbbs']['username'] = username 
+
+elif arg.startswith("bp:"):
+    password = arg[4:]
+    #config['sbbs']['password'] = password
+
+# get the token for sbbs
+if arg.startswith("bp:"):
+    s=urllib2.urlopen("http://bbs.seu.edu.cn/api/token.json?user=%s&amp;pass=%s" % (config['sbbs']['username'],password)).read().encode("utf-8")
+    information=json.loads(s)
+    if information['success']==True:
+        print "%s登录成功！" % information['name']
+        config['sbbs']['token'] = information['token']
+
+    else:
+        print "登录失败！"
+        config['sbbs']['token'] = ''
+
+configStr = json.dumps(config)
+configFile = open('.config','w')
+configFile.write(configStr)
+configFile.close()
+</string>
+				<key>type</key>
+				<integer>3</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>95E241FD-2C9D-4664-8104-0832D793BFF8</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>title</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>D4E43E3A-B67A-4C64-93BB-F52C9C90ED70</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>jwc</string>
+				<key>runningsubtext</key>
+				<string>查询中，请稍候</string>
+				<key>script</key>
+				<string>python jwc.py</string>
+				<key>subtext</key>
+				<string>查询东南大学教务处最新动态</string>
+				<key>title</key>
+				<string>教务处最新动态</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>A4CD380E-2102-45B6-9E82-B4217392CCFD</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>seuset</string>
+				<key>script</key>
+				<string>import json
+#configFile = open('.config')
+#configStr = configFile.read()
+#config = json.loads(configStr)
+arg = '{query}'
+if arg == '':
+
+    print """
+        &lt;?xml version='1.0'?&gt;
+        &lt;items&gt;
+        &lt;item autocomplete="bu: "&gt;&lt;title&gt;设置BBS用户名&lt;/title&gt;&lt;subtitle&gt;按Tab键继续&lt;/subtitle&gt;&lt;arg&gt;&lt;/arg&gt;&lt;icon&gt;img/sbbs-settings.png&lt;/icon&gt;&lt;/item&gt;
+        &lt;item autocomplete="bp: "&gt;&lt;title&gt;设置BBS密码&lt;/title&gt;&lt;subtitle&gt;按Tab键继续&lt;/subtitle&gt;&lt;arg&gt;&lt;/arg&gt;&lt;icon&gt;img/sbbs-settings.png&lt;/icon&gt;&lt;/item&gt;
+        &lt;/items&gt;
+    """
+
+elif arg.startswith("bu:"):
+    username = arg[4:]
+    print """
+        &lt;?xml version='1.0'?&gt;
+        &lt;items&gt;
+        &lt;item&gt;&lt;title&gt;设置SBBS用户名:%s&lt;/title&gt;&lt;subtitle&gt;按回车确认&lt;/subtitle&gt;&lt;arg&gt;%s&lt;/arg&gt;&lt;icon&gt;img/sbbs-settings.png&lt;/icon&gt;&lt;/item&gt;
+        &lt;/items&gt;
+    """ % (username, arg)
+
+elif arg.startswith("bp:"):
+    password = arg[4:]
+    print """
+        &lt;?xml version='1.0'?&gt;
+        &lt;items&gt;
+        &lt;item&gt;&lt;title&gt;设置SBBS密码:%s&lt;/title&gt;&lt;subtitle&gt;按回车确认&lt;/subtitle&gt;&lt;arg&gt;%s&lt;/arg&gt;&lt;icon&gt;img/sbbs-settings.png&lt;/icon&gt;&lt;/item&gt;
+        &lt;/items&gt;
+    """ % ('●'*len(password), arg)
+</string>
+				<key>title</key>
+				<string>设置SEU小工具</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>55B30402-6D57-483E-BAFC-BF2033806A92</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>东南大学小工具集合
+目前集成了sbbs查看今日十大以及提醒、查看教务处最新动态的功能。
+用法：
+1. 查看今日十大：sbbs
+2. 查看提醒：sbbsi
+3. 设置：seuset
+
+Credit: Leonard Richardson(BeautifulSoup)
+
+The MIT License (MIT)
+
+Copyright (c) 2014  Feiqiao Huang
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.</string>
+	<key>uidata</key>
+	<dict>
+		<key>36189400-5356-4F4D-83C1-9F457BE2CFB8</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>55B30402-6D57-483E-BAFC-BF2033806A92</key>
+		<dict>
+			<key>ypos</key>
+			<real>360</real>
+		</dict>
+		<key>95E241FD-2C9D-4664-8104-0832D793BFF8</key>
+		<dict>
+			<key>ypos</key>
+			<real>200</real>
+		</dict>
+		<key>A4CD380E-2102-45B6-9E82-B4217392CCFD</key>
+		<dict>
+			<key>ypos</key>
+			<real>240</real>
+		</dict>
+		<key>D4E43E3A-B67A-4C64-93BB-F52C9C90ED70</key>
+		<dict>
+			<key>ypos</key>
+			<real>200</real>
+		</dict>
+		<key>D809C20A-4141-4BD4-BBD7-8BD69BACCF1D</key>
+		<dict>
+			<key>ypos</key>
+			<real>120</real>
+		</dict>
+		<key>E213CBB7-7098-442F-9A03-E602156D0451</key>
+		<dict>
+			<key>ypos</key>
+			<real>80</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>
