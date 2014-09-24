@@ -7,6 +7,8 @@ SEUTools-Alfred-Workflow
 --------
 `sbbs` 查看虎踞龙蟠SBBS的今日十大
 
+![查看虎踞龙蟠SBBS的今日十大](https://raw.github.com/frederickjoe/my_images/master/screenshot1.png)
+
 `sbbsi` 查看SBBS站内信、回复、提醒
 
 `jwc` 查看教务处最新动态
