@@ -6,8 +6,11 @@ SEUTools-Alfred-Workflow
 1. 使用
 --------
 `sbbs` 查看虎踞龙蟠SBBS的今日十大
+
 `sbbsi` 查看SBBS站内信、回复、提醒
+
 `jwc` 查看教务处最新动态
+
 `seuset` 设置用户名、密码等
 
 2. 注意事项
