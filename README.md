@@ -5,6 +5,8 @@ SEUTools-Alfred-Workflow
 
 1. 使用
 --------
+`seuinit` 初始化所有设置，需要在全新安装时执行
+
 `sbbs` 查看虎踞龙蟠SBBS的今日十大
 
 ![查看虎踞龙蟠SBBS的今日十大](https://raw.github.com/frederickjoe/my_images/master/screenshot1.png)
