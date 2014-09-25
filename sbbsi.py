@@ -7,10 +7,17 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 
 #read config
-configFile = open('.config','r')
-configStr = configFile.read()
-config = json.loads(configStr)
-configFile.close()
+try:
+    configFile = open('.config','r')
+    configStr = configFile.read()
+    config = json.loads(configStr)
+    configFile.close()
+except Exception, e:
+    print """
+    <?xml version='1.0'?><items>
+    <item><title>未初始化！</title><subtitle>请使用seuinit命令初始化</subtitle><icon>img/seu-error.png</icon></item>
+    </items>
+    """
 
 if config['sbbs']['token']=='':
     print """

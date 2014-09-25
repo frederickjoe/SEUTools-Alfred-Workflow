@@ -8,6 +8,17 @@
 	<string>Tools</string>
 	<key>connections</key>
 	<dict>
+		<key>1E41F0F4-3A19-46B0-8B1A-ECD8D15A5032</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E9F55FF8-5AA7-42E6-8999-E5462C827910</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>36189400-5356-4F4D-83C1-9F457BE2CFB8</key>
 		<array>
 			<dict>
@@ -179,6 +190,11 @@ elif arg.startswith("bp:"):
     password = arg[4:]
     #config['sbbs']['password'] = password
 
+########## the other settings ##########
+
+########################################
+
+
 # get the token for sbbs
 if arg.startswith("bp:"):
     s=urllib2.urlopen("http://bbs.seu.edu.cn/api/token.json?user=%s&amp;pass=%s" % (config['sbbs']['username'],password)).read().encode("utf-8")
@@ -261,6 +277,45 @@ configFile.close()
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>import json
+
+sbbsConfig = {}
+config = {}
+
+########## SBBS settings ##########
+
+sbbsConfig["username"] = "your_username"
+sbbsConfig["token"] = ""
+config["sbbs"] = sbbsConfig
+
+###################################
+
+######### the other settings ######
+
+
+###################################
+
+
+configStr = json.dumps(config)
+configFile = open(".config", "w")
+configFile.write(configStr)
+configFile.close()</string>
+				<key>type</key>
+				<integer>3</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>E9F55FF8-5AA7-42E6-8999-E5462C827910</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -269,9 +324,17 @@ configFile.close()
 				<string>seuset</string>
 				<key>script</key>
 				<string>import json
-#configFile = open('.config')
-#configStr = configFile.read()
-#config = json.loads(configStr)
+import os,sys
+
+if os.path.isfile('.config') != True:
+    print """
+        &lt;?xml version='1.0'?&gt;
+        &lt;items&gt;
+        &lt;item&gt;&lt;title&gt;未初始化！&lt;/title&gt;&lt;subtitle&gt;请使用seuinit进行初始化&lt;/subtitle&gt;&lt;arg&gt;&lt;/arg&gt;&lt;icon&gt;img/seu-error.png&lt;/icon&gt;&lt;/item&gt;
+        &lt;/items&gt;
+    """
+    sys.exit()
+
 arg = '{query}'
 if arg == '':
 
@@ -282,8 +345,10 @@ if arg == '':
         &lt;item autocomplete="bp: "&gt;&lt;title&gt;设置BBS密码&lt;/title&gt;&lt;subtitle&gt;按Tab键继续&lt;/subtitle&gt;&lt;arg&gt;&lt;/arg&gt;&lt;icon&gt;img/sbbs-settings.png&lt;/icon&gt;&lt;/item&gt;
         &lt;/items&gt;
     """
+############### add some new item as new settings ###################
 
-elif arg.startswith("bu:"):
+
+elif arg.startswith("bu:"):#set up sbbs username
     username = arg[4:]
     print """
         &lt;?xml version='1.0'?&gt;
@@ -292,7 +357,7 @@ elif arg.startswith("bu:"):
         &lt;/items&gt;
     """ % (username, arg)
 
-elif arg.startswith("bp:"):
+elif arg.startswith("bp:"):#set up sbbs password
     password = arg[4:]
     print """
         &lt;?xml version='1.0'?&gt;
@@ -300,6 +365,10 @@ elif arg.startswith("bp:"):
         &lt;item&gt;&lt;title&gt;设置SBBS密码:%s&lt;/title&gt;&lt;subtitle&gt;按回车确认&lt;/subtitle&gt;&lt;arg&gt;%s&lt;/arg&gt;&lt;icon&gt;img/sbbs-settings.png&lt;/icon&gt;&lt;/item&gt;
         &lt;/items&gt;
     """ % ('●'*len(password), arg)
+
+########### the other settings ##########
+
+#########################################
 </string>
 				<key>title</key>
 				<string>设置SEU小工具</string>
@@ -312,6 +381,27 @@ elif arg.startswith("bp:"):
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>55B30402-6D57-483E-BAFC-BF2033806A92</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>seuinit</string>
+				<key>subtext</key>
+				<string>请谨慎使用！</string>
+				<key>text</key>
+				<string>初始化SEU小工具设置</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>1E41F0F4-3A19-46B0-8B1A-ECD8D15A5032</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -349,6 +439,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.</string>
 	<key>uidata</key>
 	<dict>
+		<key>1E41F0F4-3A19-46B0-8B1A-ECD8D15A5032</key>
+		<dict>
+			<key>ypos</key>
+			<real>480</real>
+		</dict>
 		<key>36189400-5356-4F4D-83C1-9F457BE2CFB8</key>
 		<dict>
 			<key>ypos</key>
@@ -383,6 +478,11 @@ THE SOFTWARE.</string>
 		<dict>
 			<key>ypos</key>
 			<real>80</real>
+		</dict>
+		<key>E9F55FF8-5AA7-42E6-8999-E5462C827910</key>
+		<dict>
+			<key>ypos</key>
+			<real>320</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
