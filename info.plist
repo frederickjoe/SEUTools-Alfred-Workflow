@@ -319,61 +319,15 @@ configFile.close()</string>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>keyword</key>
 				<string>seuset</string>
 				<key>script</key>
-				<string>import json
-import os,sys
-
-if os.path.isfile('.config') != True:
-    print """
-        &lt;?xml version='1.0'?&gt;
-        &lt;items&gt;
-        &lt;item&gt;&lt;title&gt;未初始化！&lt;/title&gt;&lt;subtitle&gt;请使用seuinit进行初始化&lt;/subtitle&gt;&lt;arg&gt;&lt;/arg&gt;&lt;icon&gt;img/seu-error.png&lt;/icon&gt;&lt;/item&gt;
-        &lt;/items&gt;
-    """
-    sys.exit()
-
-arg = '{query}'
-if arg == '':
-
-    print """
-        &lt;?xml version='1.0'?&gt;
-        &lt;items&gt;
-        &lt;item autocomplete="bu: "&gt;&lt;title&gt;设置BBS用户名&lt;/title&gt;&lt;subtitle&gt;按Tab键继续&lt;/subtitle&gt;&lt;arg&gt;&lt;/arg&gt;&lt;icon&gt;img/sbbs-settings.png&lt;/icon&gt;&lt;/item&gt;
-        &lt;item autocomplete="bp: "&gt;&lt;title&gt;设置BBS密码&lt;/title&gt;&lt;subtitle&gt;按Tab键继续&lt;/subtitle&gt;&lt;arg&gt;&lt;/arg&gt;&lt;icon&gt;img/sbbs-settings.png&lt;/icon&gt;&lt;/item&gt;
-        &lt;/items&gt;
-    """
-############### add some new item as new settings ###################
-
-
-elif arg.startswith("bu:"):#set up sbbs username
-    username = arg[4:]
-    print """
-        &lt;?xml version='1.0'?&gt;
-        &lt;items&gt;
-        &lt;item&gt;&lt;title&gt;设置SBBS用户名:%s&lt;/title&gt;&lt;subtitle&gt;按回车确认&lt;/subtitle&gt;&lt;arg&gt;%s&lt;/arg&gt;&lt;icon&gt;img/sbbs-settings.png&lt;/icon&gt;&lt;/item&gt;
-        &lt;/items&gt;
-    """ % (username, arg)
-
-elif arg.startswith("bp:"):#set up sbbs password
-    password = arg[4:]
-    print """
-        &lt;?xml version='1.0'?&gt;
-        &lt;items&gt;
-        &lt;item&gt;&lt;title&gt;设置SBBS密码:%s&lt;/title&gt;&lt;subtitle&gt;按回车确认&lt;/subtitle&gt;&lt;arg&gt;%s&lt;/arg&gt;&lt;icon&gt;img/sbbs-settings.png&lt;/icon&gt;&lt;/item&gt;
-        &lt;/items&gt;
-    """ % ('●'*len(password), arg)
-
-########### the other settings ##########
-
-#########################################
-</string>
+				<string>python seuset.py {query}</string>
 				<key>title</key>
 				<string>设置SEU小工具</string>
 				<key>type</key>
-				<integer>3</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>

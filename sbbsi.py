@@ -1,78 +1,83 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import urllib2, json
-import sys, time
-from xml.sax.saxutils import escape
+import urllib2
+import json
+import sys
+import time
+
+from PyWorkflowGen import WorkflowXML
+myResult = WorkflowXML()
 reload(sys)
 sys.setdefaultencoding("utf-8")
-
-#read config
+# read config
 try:
-    configFile = open('.config','r')
+    configFile = open('.config', 'r')
     configStr = configFile.read()
     config = json.loads(configStr)
     configFile.close()
 except Exception, e:
-    print """
-    <?xml version='1.0'?><items>
-    <item><title>未初始化！</title><subtitle>请使用seuinit命令初始化</subtitle><icon>img/seu-error.png</icon></item>
-    </items>
-    """
-
-if config['sbbs']['token']=='':
-    print """
-    <?xml version='1.0'?><items>
-    <item><title>未登录！</title><subtitle>请使用seuset命令登录</subtitle><icon>img/sbbs-error.png</icon></item>
-    </items>
-    """
+    myResult.addItem(title="未初始化！", subtitle="请使用seuinit命令初始化",
+                     icon="img/seu-error.png")
+    print myResult.toPrettyString()
     sys.exit()
 
-print "<?xml version='1.0'?><items>"
+if config['sbbs']['token'] == '':
+    myResult.addItem(title="未登录！", subtitle="请使用seuset命令登录",
+                     icon="img/seu-error.png")
+    print myResult.toPrettyString()
+    sys.exit()
 
-
-s=urllib2.urlopen("http://bbs.seu.edu.cn/api/notifications.json?token=%s" % config['sbbs']['token']).read().encode("utf-8")
-information=json.loads(s)
+s = urllib2.urlopen("http://bbs.seu.edu.cn/api/notifications.json?token=%s" %
+                    config['sbbs']['token']).read().encode("utf-8")
+information = json.loads(s)
 
 if information['success'] != True:
-    print "<item><title>获取信息失败！</title><subtitle>请使用seuset命令重新登录</subtitle><icon>img/sbbs-error.png</icon></item>"
-
+    myResult.addItem(title="获取信息失败！",
+                     subtitle="请使用seuset命令重新登录",
+                     icon="img/sbbs-error.png")
 else:
     if information.has_key("mails"):
-        print "<item><title>站内信</title><subtitle>%d 封未读</subtitle><icon>img/sbbs-mail.png</icon><arg>http://bbs.seu.edu.cn/bbsmailbox.php</arg></item>" % len(information["mails"]),
+        myResult.addItem(title="站内信",
+                         subtitle="%d 封未读" % len(information["mails"]),
+                         icon="img/sbbs-mail.png",
+                         arg="http://bbs.seu.edu.cn/bbsmailbox.php")
+
         for mail in information["mails"]:
-            print "<item>",
-            print "<title>  %s</title>" % escape(mail["title"]),
-            subt =  "  作者: %s" % (mail["sender"])
-            print "<subtitle>%s</subtitle>" % subt,
-            print "<icon>img/sbbs-mail.png</icon>",
-            print "<arg>http://bbs.seu.edu.cn/bbsmailcon.php?dir=.DIR&amp;num=%d</arg>" %(mail["id"]),
-            print "</item>",
+            myResult.addItem(title=" %s" % mail["title"],
+                             subtitle="  作者: %s" % (mail["sender"]),
+                             icon="img/sbbs-mail.png",
+                             arg="http://bbs.seu.edu.cn/bbsmailcon.php?dir=.DIR&num=%d" % mail["id"])
     else:
-        print "<item><title>没有未读站内信</title><subtitle></subtitle><icon>img/sbbs-mail.png</icon><arg>http://bbs.seu.edu.cn/bbsmailbox.php</arg></item>",
+        myResult.addItem(title="没有未读的站内信",
+                         icon="img/sbbs-mail.png",
+                         arg="http://bbs.seu.edu.cn/bbsmailbox.php")
+
     if information.has_key("replies"):
-        print "<item><title>回复</title><subtitle>%d 未读</subtitle><icon>img/sbbs-reply.png</icon><arg></arg></item>" % len(information["replies"]),
+        myResult.addItem(title="回复",
+                         subtitle="%d 未读" % len(information["replies"]),
+                         icon="img/sbbs-reply.png")
         for reply in information["replies"]:
-            print "<item>",
-            print "<title>  %s</title>" % escape(reply["title"]),
-            subt =  "  作者: %s" % (reply["user"])
-            print "<subtitle>%s</subtitle>" % subt,
-            print "<icon>img/sbbs-reply.png</icon>",
-            print "<arg>http://bbs.seu.edu.cn/bbscon.php?board=%s&amp;id=%s</arg>" %(reply["board"],reply["id"]),
-            print "</item>",
+            myResult.addItem(title=" %s" % reply["title"],
+                             subtitle="  作者: %s" % reply["user"],
+                             icon="img/sbbs-reply.png",
+                             arg="http://bbs.seu.edu.cn/bbscon.php?board=%s&id=%s"
+                             % (reply["board"], reply["id"]))
     else:
-        print "<item><title>没有未读回复</title><subtitle></subtitle><icon>img/sbbs-reply.png</icon></item>",
+        myResult.addItem(title="没有未读的回复",
+                         icon="img/sbbs-reply.png")
 
-    if information.has_key("replies"):
-        print "<item><title>提到我的</title><subtitle>%d 未读</subtitle><icon>img/sbbs-at.png</icon><arg></arg></item>" % len(information["ats"]),
+    if information.has_key("ats"):
+        myResult.addItem(title="提到我的",
+                         subtitle="%d 未读" % len(information["ats"]),
+                         icon="img/sbbs-at.png")
         for at in information["ats"]:
-            print "<item>",
-            print "<title>  %s</title>" % escape(at["title"]),
-            subt =  "  作者: %s" % (at["user"])
-            print "<subtitle>%s</subtitle>" % subt,
-            print "<icon>img/sbbs-at.png</icon>",
-            print "<arg>http://bbs.seu.edu.cn/bbscon.php?board=%s&amp;id=%s</arg>" %(at["board"],at["id"]),
-            print "</item>",
+            myResult.addItem(title=" %s" % at["title"],
+                             subtitle="  作者: %s" % at["user"],
+                             icon="img/sbbs-at.png",
+                             arg="http://bbs.seu.edu.cn/bbscon.php?board=%s&id=%s"
+                             % (at["board"], at["id"]))
     else:
-        print "<item><title>没有未读@</title><subtitle></subtitle><icon>img/sbbs-at.png</icon></item>",
-print "</items>"
+        myResult.addItem(title="没有未读的@",
+                         icon="img/sbbs-at.png")
 
+print myResult.toPrettyString()
