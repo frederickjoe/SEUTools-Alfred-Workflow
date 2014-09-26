@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 
+# this defines the settings frontend
+
 import json
 import os
 import sys
+from PyWorkflowGen import WorkflowXML
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-from PyWorkflowGen import WorkflowXML
 myResult = WorkflowXML()
 
 if os.path.isfile('.config') != True:
@@ -27,15 +29,15 @@ if arg == '':
     myResult.addItem(itemValid="no",
                      autocomplete="bu: ",
                      title="设置SBBS用户名",
-                     subtitle="按Tab键继续",
+                     subtitle="按Tab或回车键继续",
                      icon="img/sbbs-settings.png")
     myResult.addItem(itemValid="no",
                      autocomplete="bp: ",
                      title="设置SBBS密码",
-                     subtitle="按Tab键继续",
+                     subtitle="按Tab或回车键继续",
                      icon="img/sbbs-settings.png")
 
-    # add some new item as new settings ######
+    # add some new item as new settings #
 
     #
 
@@ -56,7 +58,7 @@ elif arg.startswith("bp:"):  # set up sbbs password
                      arg=arg,
                      icon="img/sbbs-settings.png")
 
-# the other settings ##########
+# the other settings #
 
 #
 

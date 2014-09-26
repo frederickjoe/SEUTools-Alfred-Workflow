@@ -166,54 +166,11 @@
 			<key>config</key>
 			<dict>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>script</key>
-				<string>import json,urllib, urllib2
-import sys
-from xml.sax.saxutils import escape
-reload(sys)
-sys.setdefaultencoding("utf-8")
-configFile = open('.config','r')
-configStr = configFile.read()
-config = json.loads(configStr)
-configFile.close()
-#print config
-arg = '{query}'
-if arg == '':
-    #do nothing
-    pass
-elif arg.startswith("bu:"):
-    username = arg[4:]
-    config['sbbs']['username'] = username 
-
-elif arg.startswith("bp:"):
-    password = arg[4:]
-    #config['sbbs']['password'] = password
-
-########## the other settings ##########
-
-########################################
-
-
-# get the token for sbbs
-if arg.startswith("bp:"):
-    s=urllib2.urlopen("http://bbs.seu.edu.cn/api/token.json?user=%s&amp;pass=%s" % (config['sbbs']['username'],password)).read().encode("utf-8")
-    information=json.loads(s)
-    if information['success']==True:
-        print "%s登录成功！" % information['name']
-        config['sbbs']['token'] = information['token']
-
-    else:
-        print "登录失败！"
-        config['sbbs']['token'] = ''
-
-configStr = json.dumps(config)
-configFile = open('.config','w')
-configFile.write(configStr)
-configFile.close()
-</string>
+				<string>python seusetOps.py {query}</string>
 				<key>type</key>
-				<integer>3</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -280,31 +237,9 @@ configFile.close()
 				<key>escaping</key>
 				<integer>127</integer>
 				<key>script</key>
-				<string>import json
-
-sbbsConfig = {}
-config = {}
-
-########## SBBS settings ##########
-
-sbbsConfig["username"] = "your_username"
-sbbsConfig["token"] = ""
-config["sbbs"] = sbbsConfig
-
-###################################
-
-######### the other settings ######
-
-
-###################################
-
-
-configStr = json.dumps(config)
-configFile = open(".config", "w")
-configFile.write(configStr)
-configFile.close()</string>
+				<string>python seuinit.py</string>
 				<key>type</key>
-				<integer>3</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
