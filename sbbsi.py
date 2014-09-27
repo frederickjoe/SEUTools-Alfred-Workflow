@@ -46,7 +46,8 @@ else:
             myResult.addItem(title=" %s" % mail["title"],
                              subtitle="  作者: %s" % (mail["sender"]),
                              icon="img/sbbs-mail.png",
-                             arg="http://bbs.seu.edu.cn/bbsmailcon.php?dir=.DIR&num=%d" % mail["id"])
+                             arg="http://bbs.seu.edu.cn/bbsmailcon.php?dir=.DIR&num=%d" 
+                             % mail["id"])
     else:
         myResult.addItem(title="没有未读的站内信",
                          icon="img/sbbs-mail.png",
@@ -64,6 +65,7 @@ else:
                              % (reply["board"], reply["id"]))
     else:
         myResult.addItem(title="没有未读的回复",
+                         itemValid="no",
                          icon="img/sbbs-reply.png")
 
     if information.has_key("ats"):
@@ -78,6 +80,7 @@ else:
                              % (at["board"], at["id"]))
     else:
         myResult.addItem(title="没有未读的@",
+                         itemValid="no",
                          icon="img/sbbs-at.png")
 
 print myResult.toPrettyString()

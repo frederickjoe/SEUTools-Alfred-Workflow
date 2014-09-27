@@ -76,6 +76,17 @@
 		</array>
 		<key>E213CBB7-7098-442F-9A03-E602156D0451</key>
 		<array/>
+		<key>E9F55FF8-5AA7-42E6-8999-E5462C827910</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D4E43E3A-B67A-4C64-93BB-F52C9C90ED70</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Everyone</string>
@@ -119,23 +130,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>plusspaces</key>
-				<false/>
-				<key>url</key>
-				<string>{query}</string>
-				<key>utf8</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>E213CBB7-7098-442F-9A03-E602156D0451</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
@@ -165,40 +159,17 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
-				<integer>1</integer>
-				<key>script</key>
-				<string>python seusetOps.py {query}</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>95E241FD-2C9D-4664-8104-0832D793BFF8</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
+				<key>plusspaces</key>
 				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>title</key>
+				<key>url</key>
 				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.action.openurl</string>
 			<key>uid</key>
-			<string>D4E43E3A-B67A-4C64-93BB-F52C9C90ED70</string>
+			<string>E213CBB7-7098-442F-9A03-E602156D0451</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -235,16 +206,16 @@
 			<key>config</key>
 			<dict>
 				<key>escaping</key>
-				<integer>127</integer>
+				<integer>1</integer>
 				<key>script</key>
-				<string>python seuinit.py</string>
+				<string>python seusetOps.py {query}</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>E9F55FF8-5AA7-42E6-8999-E5462C827910</string>
+			<string>95E241FD-2C9D-4664-8104-0832D793BFF8</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -276,6 +247,29 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>title</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>D4E43E3A-B67A-4C64-93BB-F52C9C90ED70</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>keyword</key>
@@ -291,6 +285,23 @@
 			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
 			<string>1E41F0F4-3A19-46B0-8B1A-ECD8D15A5032</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>python seuinit.py</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>E9F55FF8-5AA7-42E6-8999-E5462C827910</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -346,7 +357,7 @@ THE SOFTWARE.</string>
 		<key>95E241FD-2C9D-4664-8104-0832D793BFF8</key>
 		<dict>
 			<key>ypos</key>
-			<real>200</real>
+			<real>360</real>
 		</dict>
 		<key>A4CD380E-2102-45B6-9E82-B4217392CCFD</key>
 		<dict>
@@ -356,7 +367,7 @@ THE SOFTWARE.</string>
 		<key>D4E43E3A-B67A-4C64-93BB-F52C9C90ED70</key>
 		<dict>
 			<key>ypos</key>
-			<real>200</real>
+			<real>420</real>
 		</dict>
 		<key>D809C20A-4141-4BD4-BBD7-8BD69BACCF1D</key>
 		<dict>
@@ -366,12 +377,12 @@ THE SOFTWARE.</string>
 		<key>E213CBB7-7098-442F-9A03-E602156D0451</key>
 		<dict>
 			<key>ypos</key>
-			<real>80</real>
+			<real>120</real>
 		</dict>
 		<key>E9F55FF8-5AA7-42E6-8999-E5462C827910</key>
 		<dict>
 			<key>ypos</key>
-			<real>320</real>
+			<real>480</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>

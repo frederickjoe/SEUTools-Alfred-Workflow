@@ -23,3 +23,5 @@ configStr = json.dumps(config)
 configFile = open(".config", "w")
 configFile.write(configStr)
 configFile.close()
+
+print ("初始化已完成！")
