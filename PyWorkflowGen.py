@@ -10,9 +10,9 @@ class WorkflowXML(object):
     def __init__(self):
         self.items = Element('items')
 
-    def addItem(self, itemUid="", itemArg="", itemType="file",
-                itemValid="yes", autocomplete="",
-                title="", subtitle="", icon="", arg=""):
+    def addItem(self, itemUid=u"", itemArg=u"", itemType=u"file",
+                itemValid=u"yes", autocomplete=u"",
+                title=u"", subtitle=u"", icon=u"", arg=u""):
 
         item = SubElement(self.items, 'item')
 
@@ -50,4 +50,6 @@ class WorkflowXML(object):
 
     def toString(self):
         s = tostring(self.items, 'utf-8')
-        return s
+        reparsedXml = xml.dom.minidom.parseString(s)
+        xmlString = reparsedXml.toxml()
+        return xmlString

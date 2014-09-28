@@ -9,15 +9,16 @@ import urllib2
 import sys
 from xml.sax.saxutils import escape
 
-reload(sys)
-sys.setdefaultencoding("utf-8")
+#reload(sys)
+#sys.setdefaultencoding("utf-8")
 try:
     configFile = open('.config', 'r')
-    configStr = configFile.read()
+    configStr = configFile.read().decode('utf-8')
     config = json.loads(configStr)
     configFile.close()
 except Exception, e:
-    print "未初始化！请使用seuinit初始化"
+    failMsg = u"未初始化！请使用seuinit初始化"
+    print failMsg.encode('utf-8')
     sys.exit()
 
 arg = ''
@@ -46,14 +47,16 @@ elif arg.startswith("bp:"):
 if arg.startswith("bp:"):
     s = urllib2.urlopen(
         "http://bbs.seu.edu.cn/api/token.json?user=%s&pass=%s" %
-        (config['sbbs']['username'], password)).read().encode("utf-8")
+        (config['sbbs']['username'].encode('utf-8'), password)).read().decode("utf-8")
     information = json.loads(s)
     if information['success'] == True:
-        print "%s登录SBBS成功！" % information['name']
+        sucMsg = u"%s登录SBBS成功！" % information['name']
+        print sucMsg.encode('utf-8')
         config['sbbs']['token'] = information['token']
 
     else:
-        print "登录SBBS失败！"
+        failMsg = u"登录SBBS失败！"
+        print failMsg.encode('utf-8')
         config['sbbs']['token'] = ''
 
 configStr = json.dumps(config)
