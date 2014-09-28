@@ -36,48 +36,48 @@ if information['success'] != True:
                      subtitle="请使用seuset命令重新登录",
                      icon="img/sbbs-error.png")
 else:
-    if information.has_key("mails"):
+    if information.has_key('mails'):
         myResult.addItem(title="站内信",
-                         subtitle="%d 封未读" % len(information["mails"]),
+                         subtitle="%d 封未读" % len(information['mails']),
                          icon="img/sbbs-mail.png",
                          arg="http://bbs.seu.edu.cn/bbsmailbox.php")
 
-        for mail in information["mails"]:
-            myResult.addItem(title=" %s" % mail["title"],
-                             subtitle="  作者: %s" % (mail["sender"]),
+        for mail in information['mails']:
+            myResult.addItem(title=" %s" % mail['title'],
+                             subtitle="  作者: %s" % (mail['sender']),
                              icon="img/sbbs-mail.png",
                              arg="http://bbs.seu.edu.cn/bbsmailcon.php?dir=.DIR&num=%d" 
-                             % mail["id"])
+                             % mail['id'])
     else:
         myResult.addItem(title="没有未读的站内信",
                          icon="img/sbbs-mail.png",
                          arg="http://bbs.seu.edu.cn/bbsmailbox.php")
 
-    if information.has_key("replies"):
+    if information.has_key('replies'):
         myResult.addItem(title="回复",
-                         subtitle="%d 未读" % len(information["replies"]),
+                         subtitle="%d 未读" % len(information['replies']),
                          icon="img/sbbs-reply.png")
-        for reply in information["replies"]:
-            myResult.addItem(title=" %s" % reply["title"],
-                             subtitle="  作者: %s" % reply["user"],
+        for reply in information['replies']:
+            myResult.addItem(title=" %s" % reply['title'],
+                             subtitle="  作者: %s" % reply['user'],
                              icon="img/sbbs-reply.png",
                              arg="http://bbs.seu.edu.cn/bbscon.php?board=%s&id=%s"
-                             % (reply["board"], reply["id"]))
+                             % (reply['board'], reply['id']))
     else:
         myResult.addItem(title="没有未读的回复",
                          itemValid="no",
                          icon="img/sbbs-reply.png")
 
-    if information.has_key("ats"):
+    if information.has_key('ats'):
         myResult.addItem(title="提到我的",
-                         subtitle="%d 未读" % len(information["ats"]),
+                         subtitle="%d 未读" % len(information['ats']),
                          icon="img/sbbs-at.png")
-        for at in information["ats"]:
-            myResult.addItem(title=" %s" % at["title"],
-                             subtitle="  作者: %s" % at["user"],
+        for at in information['ats']:
+            myResult.addItem(title=" %s" % at['title'],
+                             subtitle="  作者: %s" % at['user'],
                              icon="img/sbbs-at.png",
                              arg="http://bbs.seu.edu.cn/bbscon.php?board=%s&id=%s"
-                             % (at["board"], at["id"]))
+                             % (at['board'], at['id']))
     else:
         myResult.addItem(title="没有未读的@",
                          itemValid="no",

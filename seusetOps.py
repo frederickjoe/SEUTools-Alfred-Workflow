@@ -11,11 +11,14 @@ from xml.sax.saxutils import escape
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
-
-configFile = open('.config', 'r')
-configStr = configFile.read()
-config = json.loads(configStr)
-configFile.close()
+try:
+    configFile = open('.config', 'r')
+    configStr = configFile.read()
+    config = json.loads(configStr)
+    configFile.close()
+except Exception, e:
+    print "未初始化！请使用seuinit初始化"
+    sys.exit()
 
 arg = ''
 
