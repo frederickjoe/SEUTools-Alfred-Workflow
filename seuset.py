@@ -36,6 +36,11 @@ if arg == '':
                      title=u"设置SBBS密码",
                      subtitle=u"按Tab或回车键继续",
                      icon=u"img/sbbs-settings.png")
+    myResult.addItem(itemValid=u"no",
+                     autocomplete=u"card: ",
+                     title=u"设置一卡通号",
+                     subtitle=u"按Tab或回车键继续",
+                     icon=u"img/settings.png")
 
     # add some new item as new settings #
 
@@ -57,7 +62,12 @@ elif arg.startswith("bp:"):  # set up sbbs password
                      icon=u"img/sbbs-settings.png")
 
 # the other settings #
-
+elif arg.startswith("card:"):  # set up allinonecard number
+    cardNumber = arg[6:]
+    myResult.addItem(title=u"设置一卡通号码:%s" % cardNumber,
+                     subtitle=u"按回车确认",
+                     arg=arg,
+                     icon=u"img/settings.png")
 #
 
 

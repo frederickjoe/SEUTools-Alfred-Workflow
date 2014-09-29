@@ -7,6 +7,7 @@ import json
 import urllib
 import urllib2
 import sys
+import os
 from xml.sax.saxutils import escape
 
 #reload(sys)
@@ -39,7 +40,8 @@ elif arg.startswith("bp:"):
     #config['sbbs']['password'] = password
 
 # the other settings #
-
+elif arg.startswith("card:"):
+    cardNumber = arg[6:]
 #
 
 
@@ -58,6 +60,13 @@ if arg.startswith("bp:"):
         failMsg = u"登录SBBS失败！"
         print failMsg.encode('utf-8')
         config['sbbs']['token'] = ''
+
+if arg.startswith("card:"):
+    card = {'number': cardNumber}
+    config['card'] = card
+    os.system("rm .kbcache")
+    sucMsg = u"设置一卡通号成功！"
+    print sucMsg.encode('utf-8')
 
 configStr = json.dumps(config)
 configFile = open('.config', 'w')

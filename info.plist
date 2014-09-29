@@ -305,6 +305,33 @@
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>126</integer>
+				<key>keyword</key>
+				<string>kb</string>
+				<key>runningsubtext</key>
+				<string>查询中，请稍候...</string>
+				<key>script</key>
+				<string>python kb.py {query}</string>
+				<key>title</key>
+				<string>查询课表</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>A89A226B-1D6F-4B14-A381-452A86F8078F</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>东南大学小工具集合
@@ -363,6 +390,11 @@ THE SOFTWARE.</string>
 		<dict>
 			<key>ypos</key>
 			<real>240</real>
+		</dict>
+		<key>A89A226B-1D6F-4B14-A381-452A86F8078F</key>
+		<dict>
+			<key>ypos</key>
+			<real>600</real>
 		</dict>
 		<key>D4E43E3A-B67A-4C64-93BB-F52C9C90ED70</key>
 		<dict>
