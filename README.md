@@ -19,9 +19,15 @@ SEUTools-Alfred-Workflow
 
 ![查看虎踞龙蟠SBBS的今日十大](https://raw.github.com/frederickjoe/my_images/master/screenshot4.png)
 
+`kb` 查看课表（后面跟数字代表多少天后的课表）
+
+![查看课表选项](https://raw.github.com/frederickjoe/my_images/master/kb.png)
+![查看今日课表](https://raw.github.com/frederickjoe/my_images/master/kb0.png)
+
 `seuset` 设置用户名、密码等
 
 ![查看虎踞龙蟠SBBS的今日十大](https://raw.github.com/frederickjoe/my_images/master/screenshot3.png)
+
 
 2. 注意事项
 -------
