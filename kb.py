@@ -16,7 +16,6 @@ try:
                                    minute=mtime[4], second=mtime[5])
     nowTime = datetime.datetime.now()
     if (nowTime - modifyTime).days >= 1:
-        print "yes"
         os.system("rm .kbcache")
 except Exception, e:
     pass
@@ -81,8 +80,8 @@ else:
     s_unicode = kbStr.decode('utf-8')
     information = json.loads(s_unicode)
     today = datetime.date.today()
-    twodayslater = today + datetime.timedelta(days=int(arg))
-    day = twodayslater.weekday()
+    somedayslater = today + datetime.timedelta(days=int(arg))
+    day = somedayslater.weekday()
     todayInfo = information[day]
     for course in todayInfo['courses']:
         myResult.addItem(itemValid=u"no",
