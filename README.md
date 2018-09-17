@@ -1,6 +1,8 @@
 SEUTools-Alfred-Workflow
 ========================
 
+# 已废弃，似乎是sbbs改了api接口，目前没法用了
+
 关于东南大学的Alfred Workflow小工具集合
 
 1. 使用
